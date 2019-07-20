@@ -51,6 +51,78 @@ yarn run dev
 
 ```
 
+新的substrate-ui中需要修改一下文件 ./src/app.jsx
+
+主要是在底部增加一下代码
+```
+class DemoSegment extends React.Component {
+	constructor() {
+	  super()
+	  this.player = new Bond
+	}
+  
+	render() {
+	  return <Segment style={{ margin: '1em' }} padded>
+		<Header as='h2'>
+		  <Icon name='game' />
+		  <Header.Content>
+			Play the game
+			<Header.Subheader>Play the game here!</Header.Subheader>
+		  </Header.Content>
+		</Header>
+		<div style={{ paddingBottom: '1em' }}>
+		  <div style={{ fontSize: 'small' }}>player</div>
+		  <SignerBond bond={this.player} />
+		  <If condition={this.player.ready()} then={<span>
+			<Label>Balance
+			  <Label.Detail>
+				<Pretty value={runtime.balances.balance(this.player)} />
+			  </Label.Detail>
+			</Label>
+		  </span>} />
+		</div>
+		<TransactButton
+		  content="Play"
+		  icon='game'
+		  tx={{
+			sender: this.player,
+			call: calls.demo.play()
+		  }}
+		/>
+		<Label>Pot Balance
+		  <Label.Detail>
+			<Pretty value={runtime.demo.pot} />
+		  </Label.Detail>
+		</Label>
+	  </Segment>
+	}
+  }
+```
+
+
+```
+readyRender() {
+		return (<div>
+			<Heading />
+			<WalletSegment />
+			<Divider hidden />
+			<AddressBookSegment />
+			<Divider hidden />
+			<FundingSegment />
+			<Divider hidden />
+			<UpgradeSegment />
+			<Divider hidden />
+			<PokeSegment />
+			<Divider hidden />
+			<TransactionsSegment />
+
+
+			<Divider hidden /> //add this line
+    		<DemoSegment />  //add this line
+		</div>);
+	}
+```
+
 Substrate-ui 
 
 <http://localhost:8000/>
