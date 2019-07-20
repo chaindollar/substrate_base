@@ -3,9 +3,9 @@
 
 
 ```
-git clone https://github.com/shawntabrizi/substrate-package
+git clone https://github.com/chaindollar/substrate_base
 
-cd substrate-package/
+cd substrate-base/
 
 //安装substrate
 curl https://getsubstrate.io -sSf | bash -s -- --fast
