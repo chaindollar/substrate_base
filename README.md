@@ -5,7 +5,7 @@
 ```
 git clone https://github.com/chaindollar/substrate_base
 
-cd substrate-base/
+cd substrate_base/
 
 //安装substrate
 curl https://getsubstrate.io -sSf | bash -s -- --fast
